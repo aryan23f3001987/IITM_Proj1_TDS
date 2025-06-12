@@ -1,7 +1,17 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# ✅ Enable CORS for all origins (or specify the exact domain if you know it)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],           # Accept requests from any origin
+    allow_credentials=True,
+    allow_methods=["*"],           # Allow GET, POST, etc.
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def read_root():
@@ -9,27 +19,20 @@ def read_root():
 
 @app.post("/api")
 async def answer_question(request: Request):
-    try:
-        data = await request.json()
-        question = data.get("question", "")
-        image = data.get("image", "")
+    data = await request.json()
+    question = data.get("question", "")
+    image = data.get("image", "")
 
-        # Placeholder logic - replace with real model prediction
-        answer = "This is a placeholder answer. Replace this with your model output."
-        links = [
-            {
-                "url": "https://discourse.onlinedegree.iitm.ac.in/t/example-post/123456",
-                "text": "Example reference link"
-            }
-        ]
+    # 🛑 Replace this with your real RAG logic
+    answer = "This is a placeholder answer. Replace with your model output."
+    links = [
+        {
+            "url": "https://discourse.onlinedegree.iitm.ac.in/t/example/123",
+            "text": "Example link"
+        }
+    ]
 
-        return JSONResponse({
-            "answer": answer,
-            "links": links
-        })
-
-    except Exception as e:
-        return JSONResponse({"error": str(e)}, status_code=500)
+    return JSONResponse({"answer": answer, "links": links})
 
 if __name__ == "__main__":
     import uvicorn
