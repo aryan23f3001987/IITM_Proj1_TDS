@@ -1,43 +1,36 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
-from typing import Optional
 
 app = FastAPI()
 
-# Define the expected structure of the input
-class QuestionRequest(BaseModel):
-    question: str
-    image: Optional[str] = ""
+@app.get("/")
+def read_root():
+    return JSONResponse({"message": "TDS Virtual TA API is live. Use POST /api with a question."})
 
-# GET endpoint to confirm API is live
-@app.get("/api")
-def welcome():
-    return JSONResponse(content={
-        "message": "Welcome to the TDS Virtual TA API. Please send a POST request with 'question' and optional base64 'image'."
-    })
-
-# POST endpoint to process questions
 @app.post("/api")
-async def answer_question(payload: QuestionRequest):
-    question = payload.question
-    image = payload.image
+async def answer_question(request: Request):
+    try:
+        data = await request.json()
+        question = data.get("question", "")
+        image = data.get("image", "")
 
-    # Dummy logic — replace this with your RAG-based answering logic
-    answer = "This is a placeholder answer. Replace this with your model output."
+        # Placeholder logic - replace with real model prediction
+        answer = "This is a placeholder answer. Replace this with your model output."
+        links = [
+            {
+                "url": "https://discourse.onlinedegree.iitm.ac.in/t/example-post/123456",
+                "text": "Example reference link"
+            }
+        ]
 
-    links = [
-        {
-            "url": "https://discourse.onlinedegree.iitm.ac.in/t/ga5-question-8-clarification/155939/4",
-            "text": "Use the model that’s mentioned in the question."
-        },
-        {
-            "url": "https://discourse.onlinedegree.iitm.ac.in/t/ga5-question-8-clarification/155939/3",
-            "text": "Tokenizer-based cost calculation."
-        }
-    ]
+        return JSONResponse({
+            "answer": answer,
+            "links": links
+        })
 
-    return JSONResponse(content={
-        "answer": answer,
-        "links": links
-    })
+    except Exception as e:
+        return JSONResponse({"error": str(e)}, status_code=500)
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=10000)
