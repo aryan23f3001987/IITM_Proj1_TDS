@@ -1,0 +1,32 @@
+[
+  {
+    "question": "How many modules are in the TDS course?",
+    "expected": "We cover 7 modules in 12 weeks",
+    "actual": "From course content:\nWe cover 7 modules in 12 weeks",
+    "similarity": 0.74
+  },
+  {
+    "question": "Is this course theoretical or practical?",
+    "expected": "Tools in Data Science is a practical diploma level data science course at IIT Madras",
+    "actual": "From course content:\nTools in Data Science is a practical diploma level data science course at IIT Madras that teaches popular tools for sourcing data, transforming it, analyzing it, communicating these as visual stories, and deploying them in production.\nThis course exposes you to real-life tools\nThis course is quite hard",
+    "similarity": 0.41
+  },
+  {
+    "question": "Do I need to know programming before starting this course?",
+    "expected": "Programming skills are a pre-requisite",
+    "actual": "From course content:\nThis course exposes you to real-life tools\nThis course is quite hard\nProgramming skills are a pre-requisite",
+    "similarity": 0.46
+  },
+  {
+    "question": "How does this course encourage learning?",
+    "expected": "We encourage learning by sharing",
+    "actual": "From course content:\nTools in Data Science is a practical diploma level data science course at IIT Madras that teaches popular tools for sourcing data, transforming it, analyzing it, communicating these as visual stories, and deploying them in production.\nThis course exposes you to real-life tools\nThis course is quite hard",
+    "similarity": 0.01
+  },
+  {
+    "question": "What tools are taught in the course?",
+    "expected": "This course teaches popular tools for sourcing data, transforming it, analyzing it, communicating these as visual stories, and deploying them in production",
+    "actual": "From course content:\nTools in Data Science\nJan 2025: Tools in Data Science\nDevelopment Tools",
+    "similarity": 0.24
+  }
+]

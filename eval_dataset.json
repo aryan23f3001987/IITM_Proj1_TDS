@@ -1,0 +1,22 @@
+[
+  {
+    "question": "How many modules are in the TDS course?",
+    "expected_answer": "We cover 7 modules in 12 weeks"
+  },
+  {
+    "question": "Is this course theoretical or practical?",
+    "expected_answer": "Tools in Data Science is a practical diploma level data science course at IIT Madras"
+  },
+  {
+    "question": "Do I need to know programming before starting this course?",
+    "expected_answer": "Programming skills are a pre-requisite"
+  },
+  {
+    "question": "How does this course encourage learning?",
+    "expected_answer": "We encourage learning by sharing"
+  },
+  {
+    "question": "What tools are taught in the course?",
+    "expected_answer": "This course teaches popular tools for sourcing data, transforming it, analyzing it, communicating these as visual stories, and deploying them in production"
+  }
+]
