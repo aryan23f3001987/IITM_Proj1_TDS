@@ -4,35 +4,34 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# ✅ Enable CORS for all origins (or specify the exact domain if you know it)
+# Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],           # Accept requests from any origin
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],           # Allow GET, POST, etc.
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
 @app.get("/")
-def read_root():
-    return JSONResponse({"message": "TDS Virtual TA API is live. Use POST /api with a question."})
+def root_get():
+    return {"message": "TDS Virtual TA API is live. Send a POST to / with 'question' and optional 'image'."}
 
-@app.post("/api")
-async def answer_question(request: Request):
+@app.post("/")
+async def root_post(request: Request):
     data = await request.json()
     question = data.get("question", "")
     image = data.get("image", "")
 
-    # 🛑 Replace this with your real RAG logic
-    answer = "This is a placeholder answer. Replace with your model output."
+    # 🔧 Replace with actual logic
+    answer = "This is a placeholder answer. Replace with your RAG model's output."
     links = [
         {
             "url": "https://discourse.onlinedegree.iitm.ac.in/t/example/123",
-            "text": "Example link"
+            "text": "Relevant Discourse post"
         }
     ]
-
-    return JSONResponse({"answer": answer, "links": links})
+    return JSONResponse(content={"answer": answer, "links": links})
 
 if __name__ == "__main__":
     import uvicorn
